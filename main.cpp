@@ -44,8 +44,7 @@ struct Hexagon {
 
     Hexagon() : center(), radius(), valid(false) {}
 
-    Hexagon(vertex center, T radius) : center(center), radius(radius)
-    {
+    Hexagon(vertex center, T radius) : center(center), radius(radius) {
         if (radius > 0) {
             valid = true;
             count_vertexes(*this);
@@ -87,8 +86,7 @@ struct Octagon {
 
     Octagon() : center(), radius(), valid(false) {}
 
-    Octagon(vertex center, T radius) : center(center), radius(radius)
-    {
+    Octagon(vertex center, T radius) : center(center), radius(radius) {
         if (radius > 0) {
             valid = true;
             count_vertexes(*this);
@@ -130,8 +128,7 @@ struct Triangle {
 
     Triangle() : center(), radius(), valid(false) {}
 
-    Triangle(vertex center, T radius) : center(center), radius(radius)
-    {
+    Triangle(vertex center, T radius) : center(center), radius(radius) {
         if (radius > 0) {
             valid = true;
             count_vertexes(*this);
@@ -224,13 +221,13 @@ typename std::enable_if<std::is_same<T, Hexagon<typename T::type>>::value, typen
 }
 
 // Печать Tuple
-template <class T,size_t index> 
-typename std::enable_if<index>=std::tuple_size<T>::value, void>::type print_tuple(T&){
+template <class T, size_t index> 
+typename std::enable_if<index >= std::tuple_size<T>::value, void>::type print_tuple(T&){
     std::cout << std::endl;
 }
 
-template <class T,size_t index> 
-typename std::enable_if<index<std::tuple_size<T>::value, void>::type print_tuple(T& tuple){
+template <class T, size_t index> 
+typename std::enable_if<index < std::tuple_size<T>::value, void>::type print_tuple(T& tuple){
     auto figure = std::get<index>(tuple);
     print(figure);
     print_tuple<T,index+1>(tuple);
